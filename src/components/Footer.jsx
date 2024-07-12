@@ -31,7 +31,7 @@ const Footer = () => {
         </div>
         <div className="flex justify-center mt-4 md:mt-0">
           {/* Agregado mt-4 en pantallas móviles */}
-          <img src="/img/logo-sochi-color.png" alt="Logo" className="h-10" />
+          <img src="/img/logo-sochi-color.webp" alt="Logo" className="h-10" />
         </div>
         <div className="flex space-x-4 justify-center mt-4 md:mt-0">
           {socialLinks.map(({ link, colorClass, imgLink, imgAlt }, index) => (
