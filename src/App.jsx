@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from "react";
+import Navbar from "./components/Navbar";
+import Banner from "./components/Banner";
+import ClaroSports from "./components/ClaroSports";
+import Footer from "./components/Footer";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [videoUrl, setVideoUrl] = useState(null);
+  const [selectedLink, setSelectedLink] = useState(null);
+
+  const handleLinkSelect = (url) => {
+    setVideoUrl(url);
+    setSelectedLink(url); // Actualiza el estado de selectedLink
+  };
+
+  const deselectLink = () => {
+    setVideoUrl(null); // Deselecciona el enlace activo
+    setSelectedLink(null); // Deselecciona el link en ClaroSports
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Navbar />
+      <Banner videoUrl={videoUrl} deselectLink={deselectLink} />
+      <ClaroSports
+        onLinkSelect={handleLinkSelect}
+        deselectLink={deselectLink}
+        selectedLink={selectedLink} // Pasa el estado de selectedLink a ClaroSports
+      />
+      <Footer />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
