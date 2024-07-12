@@ -1,11 +1,20 @@
 import React, { useState } from "react";
 import Privacy from "./Privacy";
+import socialLinks from "../assets/data/socialNetworks";
 
 const Footer = () => {
   const [showPrivacyModal, setShowPrivacyModal] = useState(false);
 
   const togglePrivacyModal = () => {
     setShowPrivacyModal(!showPrivacyModal);
+  };
+
+  // Número ficticio para propósitos de ejemplo con formato mexicano
+  const contactoNumero = "+52 1 55 1234 5678";
+
+  // Función para abrir WhatsApp
+  const openWhatsApp = () => {
+    window.open(`https://wa.me/${contactoNumero.replace(/\s/g, "")}`, "_blank");
   };
 
   return (
@@ -16,50 +25,26 @@ const Footer = () => {
             Aviso de privacidad
           </button>
           <span>/</span>
-          <a href="/contact" className="hover:underline">
+          <a onClick={openWhatsApp} className="hover:underline cursor-pointer">
             Contacto
           </a>
         </div>
         <div className="flex justify-center mt-4 md:mt-0">
-          {" "}
           {/* Agregado mt-4 en pantallas móviles */}
           <img src="/img/logo-sochi-color.png" alt="Logo" className="h-10" />
         </div>
         <div className="flex space-x-4 justify-center mt-4 md:mt-0">
-          {" "}
-          {/* Agregado mt-4 en pantallas móviles */}
-          <a
-            href="https://www.mobli.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border border-full border-[#68adf2] bg-[#68adf2]"
-          >
-            <img src="/img/mobli-icon.webp" alt="Mobli" className="h-6" />
-          </a>
-          <a
-            href="https://twitter.com/ClaroSports"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border border-full border-[#55abf4] bg-[#55abf4]"
-          >
-            <img src="/img/twitter.webp" alt="Twitter" className="h-6" />
-          </a>
-          <a
-            href="https://www.facebook.com/clarosports/?locale=es_LA"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border border-full border-[#3a5697] bg-[#3a5697]"
-          >
-            <img src="/img/facebook.webp" alt="Facebook" className="h-6" />
-          </a>
-          <a
-            href="https://www.youtube.com/@clarosports"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border border-full border-[#a4281e] bg-[#a4281e]"
-          >
-            <img src="/img/youtube.webp" alt="Youtube" className="h-6" />
-          </a>
+          {socialLinks.map(({ link, colorClass, imgLink, imgAlt }, index) => (
+            <a
+              key={index}
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`border border-full ${colorClass}`}
+            >
+              <img src={imgLink} alt={imgAlt} className="h-6" />
+            </a>
+          ))}
         </div>
       </div>
 
